@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Analytics Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Simple DataTables CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet">
+    <style>
+        .spinner-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .spinner-container.hidden {
+            display: none;
+        }
+        .spinner-border.slow {
+            animation: spinner-border 1000s linear infinite;
+        }
+        @keyframes spinner-border {
+            100% {
+                transform: rotate(1000);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="datatable">
+        <h1> Financial Analytics Datatables</h1>
+        <div id="spinner" class="spinner-container">
+            <div class="spinner-border text-primary slow" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <table id="datatable" class="hidden"></table>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Simple DataTables -->
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const dataTable = new simpleDatatables.DataTable("#datatable", {
+                searchable: true,
+                fixedHeight: true,
+                data: {
+                    headings: ["Agent Name", "Agent Number", "city", "Start Date", "Completion",],
+                    data: [
+                        ["George Onyango Omollo", "202424", "Nairobi","2024/07/24","57%"],
+                        ["Mathew Otieno Okumu", "202425", "Kisumu","2024/07/24","78%"],
+                        ["Victor Misita Kabiru", "202426", "Moyale","2024/07/24","68%"],
+                        ["Johnston Kipchirchir", "202427", "Kajiado","2024/07/24","98%"],
+                        ["Silvia Ndede K", "202428", "Marsabit","2024/07/24","89%"],
+                        ["Caren Nyamu ", "202429", "Mombasa","2024/07/24","78%"],
+                        ["Super Marcus O", "202430", "Nakuru","2024/07/24","91%"],
+                        ["Larient Kipptum ", "202431", "Mombasa","2024/07/24","98%"],
+                        ["Master Paul ", "202432", "Nairobi","2024/07/24","89%"],
+                        ["Chief Okuzo ", "202433", "Nakuru","2024/07/24","95%"],
+                        ["Canelian Njoroge", "202434", "Mombasa","2024/07/24","99%"],
+                        ["Danvas Mzee", "202435", "Nakuru","2024/07/24","20%"],
+                        ["Denzel Washington", "202436", "Nairobi","2024/07/24","89%"],
+                        ["Palmer Jose Cheo", "202437", "Mombasa","2024/07/24","89%"],
+                        ["Roney Otieno ", "202438", "Nairobi","2024/07/24","33%"],
+                        ["Raphaem Kimeto", "202439", "Garissa","2024/07/24","45%"],
+                        ["Sammy Wamalwa", "202440", "Marsabit","2024/07/24","98%"],
+                        ["Paul Waweru Mbugua", "202441", "Nakuru","2024/07/24","89%"],
+                        ["Grace Wahu Nyaga", "202442", "Mombasa","2024/07/24","23%"],
+                        ["Zaina Wanyoike", "202443", "Kisumu","2024/07/24","10%"],
+                        ["Yusuf Hassan", "202444", "Mombasa","2024/07/24","98%"],
+                        ["Eunice Ojiambo", "202445", "Nairobi","2024/07/24","89%"],
+                        ["Beatrice Khamalwa", "202446", "Londiani","2024/07/24 ","86%"],
+                        ["Nelson Mathenge", "202447", "Ahero","2024/07/24","45%"],
+                        ["Regan Mwanamunzi", "202448", "Nairobi","2024/07/24","65%"],
+                        ["Gep Ankorot", "202449", "Moyale","2024/07/24","89%"],
+                        ["Wamero Wataita", "202450", "Makindu","2024/07/24","66%"],
+                        ["Steven Wawuda", "202451", "Kitale","2024/07/24","89%"],
+                        ["precious Princess", "202452", "Mombasa","2024/07/24","73%"],
+                        ["Kalama Harrris", "202453", "Nairobi","2024/07/24","55%"],
+                        ["Sait Paul Telo", "202454", "Nairobi","2024/07/24","16%"],
+                        ["Jonh James Opiyo", "202455", "Nakuru","2024/07/24","89%"],
+                        ["Chris Musu", "202456", "Kisumu","2024/07/24","41%"],
+                        ["Mustafa Ali", "202457", "Marsabit","2024/07/24","22%"],
+                        ["Nooor Mohammed", "202458", "Mombasa","2024/07/24","13%"],
+                        ["Abdul Khadir", "202459", "Mombasa","2024/07/24","67%"],
+                    ]
+                }
+            });
+
+            dataTable.on("datatable.init", function() {
+                document.getElementById("spinner").classList.add("hidden");
+                document.getElementById("datatable").classList.remove("hidden");
+            });
+        });
+    </script>
+</body>
+</html>

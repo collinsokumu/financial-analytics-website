@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Simple DataTables -->
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js" integrity="sha384-NV5r6+mPvffEFO5HL1Z+KH3OPlF3K/VgA9vTBP4m9g5saY7XzY5IHgRZhxzF4t11" crossorigin="anonymous"></script>
+
+    {% block stylesheet %}
+    {% endblock %}
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="d-flex">
+            {% include "layouts/sidebar.html" %}
+            <div class="w-100">
+                {% include "layouts/header.html" %}
+                <main class="container">
+                    {% block content %}
+                    <!-- Table for DataTables -->
+                    <div class="d-flex">
+                        <div class="card mx-3 p-3">
+                            <h6 class="text-center">Traffic Sources</h6>
+                            <canvas id="traffic-sources"></canvas>
+                        </div>
+                        <div class="col-lg-9">
+                            <h3 class="text-center">Most Improved Locations</h3>
+                            <table id="datatable" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Customer Locations</th>
+                                        <th>Published Date</th>
+                                        <th>Order Complete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Nairobi</td>
+                                        <td>2024-07-18</td>
+                                        <td>Yes</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kisumu</td>
+                                        <td>2024-07-17</td>
+                                        <td>No</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mombasa</td>
+                                        <td>2024-07-16</td>
+                                        <td>Yes</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nakuru</td>
+                                        <td>2024-07-15</td>
+                                        <td>No</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nanyuki</td>
+                                        <td>2024-07-18</td>
+                                        <td>Yes</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kakamega</td>
+                                        <td>2024-07-17</td>
+                                        <td>No</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Moyale</td>
+                                        <td>2024-07-16</td>
+                                        <td>Yes</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Marsabit</td>
+                                        <td>2024-07-15</td>
+                                        <td>No</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {% endblock %}
+                </main>
+            </div>
+        </div>
+    </div>
+    {% block scripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Simple DataTables
+            const dataTable = new simpleDatatables.DataTable('#datatable', {
+                searchable: true,
+                fixedHeight: true
+            });
+
+            // Initialize Chart.js Charts 
+            const totalViewsChart = new Chart(document.getElementById('total-views-chart'), {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Total Views',
+                        data: [5000, 7500, 10000, 8500, 9200, 11000],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // More charts can be initialized similarly...
+        });
+    </script>
+    {% endblock %}
+</body>
+</html>
